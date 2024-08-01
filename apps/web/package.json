@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@indieverse/ton-content": "^0.1.1",
     "@orbs-network/ton-access": "^2.3.3",
     "@repo/contract": "workspace:*",
     "@repo/ui": "workspace:*",
+    "@ton/crypto": "^3.2.0",
     "@ton/ton": "^13.11.2",
     "next": "15.0.0-rc.0",
     "react": "19.0.0-rc-f994737d14-20240522",

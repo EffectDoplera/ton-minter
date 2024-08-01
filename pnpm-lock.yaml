@@ -66,6 +66,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@indieverse/ton-content':
+        specifier: ^0.1.1
+        version: 0.1.1(@ton/core@0.56.3(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)(@ton/ton@13.11.2(@ton/core@0.56.3(@ton/crypto@3.3.0))(@ton/crypto@3.3.0))
       '@orbs-network/ton-access':
         specifier: ^2.3.3
         version: 2.3.3
@@ -75,6 +78,9 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@ton/crypto':
+        specifier: ^3.2.0
+        version: 3.3.0
       '@ton/ton':
         specifier: ^13.11.2
         version: 13.11.2(@ton/core@0.56.3(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)
@@ -571,6 +577,13 @@ packages:
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [x64]
     os: [win32]
+
+  '@indieverse/ton-content@0.1.1':
+    resolution: {integrity: sha512-hX62fNHNK2s7LqzrnjsYnf+HdIu/dHFxcp3UaaraCs4wq1nodKkqLxUOvzfnPv+iy5vDQzfLn07G9laEIr88rQ==}
+    peerDependencies:
+      '@ton/core': '>=0.56.0'
+      '@ton/crypto': '>=3.2.0'
+      '@ton/ton': '>=13.11.0'
 
   '@ipld/dag-pb@2.1.18':
     resolution: {integrity: sha512-ZBnf2fuX9y3KccADURG5vb9FaOeMjFkCrNysB0PtftME/4iCTjxfaLoNq/IAh5fTqUOMXvryN6Jyka4ZGuMLIg==}
@@ -4526,6 +4539,12 @@ snapshots:
 
   '@img/sharp-win32-x64@0.33.4':
     optional: true
+
+  '@indieverse/ton-content@0.1.1(@ton/core@0.56.3(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)(@ton/ton@13.11.2(@ton/core@0.56.3(@ton/crypto@3.3.0))(@ton/crypto@3.3.0))':
+    dependencies:
+      '@ton/core': 0.56.3(@ton/crypto@3.3.0)
+      '@ton/crypto': 3.3.0
+      '@ton/ton': 13.11.2(@ton/core@0.56.3(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)
 
   '@ipld/dag-pb@2.1.18':
     dependencies:

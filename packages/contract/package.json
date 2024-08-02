@@ -1,0 +1,28 @@
+{
+  "name": "@repo/contract",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "blueprint run",
+    "build": "blueprint build",
+    "test": "jest --verbose"
+  },
+  "exports": {
+    "./SimpleCounter": "./wrappers/SimpleCounter.ts",
+    "./JettonWallet": "./wrappers/JettonWallet.ts"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@ton/blueprint": "^0.22.0",
+    "@ton/sandbox": "^0.20.0",
+    "@ton/test-utils": "^0.4.2",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.10",
+    "jest": "^29.7.0",
+    "@ton/ton": "^13.11.2",
+    "@ton/core": "~0",
+    "@ton/crypto": "^3.2.0",
+    "ts-jest": "^29.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  }
+}

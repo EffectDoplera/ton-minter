@@ -1,0 +1,7 @@
+{
+    "extends": "@repo/typescript-config/ton-contract.json",
+    "exclude": [
+        "node_modules",
+        "build"
+    ]
+}

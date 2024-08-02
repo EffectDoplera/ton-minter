@@ -1,3 +1,4 @@
+import "@stdlib/deploy";
 import "./messages";
 
 struct JettonWalletData {
@@ -8,7 +9,7 @@ struct JettonWalletData {
 }
 
 @interface("org.ton.jetton.wallet")
-contract JettonWallet {
+contract JettonWallet with Deployable {
   const minTonsForStorage: Int = ton("0.01");
   const gasConsumption: Int = ton("0.01");
 

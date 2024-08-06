@@ -8,7 +8,8 @@
   },
   "exports": {
     "./SimpleCounter": "./wrappers/SimpleCounter.ts",
-    "./JettonWallet": "./wrappers/JettonWallet.ts"
+    "./JettonWallet": "./wrappers/JettonWallet.ts",
+    "./JettonMaster": "./wrappers/JettonMaster.ts"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",

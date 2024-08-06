@@ -1,4 +1,5 @@
-import "@stdlib/deploy";
+import "@stdlib/ownable";
+
 import "./messages";
 
 struct JettonWalletData {
@@ -9,7 +10,7 @@ struct JettonWalletData {
 }
 
 @interface("org.ton.jetton.wallet")
-contract JettonWallet with Deployable {
+contract JettonWallet with Ownable {
   const minTonsForStorage: Int = ton("0.01");
   const gasConsumption: Int = ton("0.01");
 
@@ -22,9 +23,10 @@ contract JettonWallet with Deployable {
     self.master = master;
   }
 
-  receive(msg: Transfer) {
+  receive(msg: JettonTransfer) {
+    self.requireOwner();
+
     let ctx: Context = context();
-    require(self.owner == ctx.sender, "Invalid sender");
 
     // Gas checks
     let fwdFee: Int = ctx.readForwardFee() * 2;
@@ -33,39 +35,39 @@ contract JettonWallet with Deployable {
     
     // Update balance
     self.balance = self.balance - msg.amount;
-    require(self.balance >= 0, "Invalid Jetton amount");
+    self.requireBalance();
 
     // Send transaction
-    let init: StateInit = initOf JettonWallet(self.master, msg.destination);  
+    let init: StateInit = self.getJettonWalletInit(msg.destination);
     let walletAddress: Address = contractAddress(init);
     send(SendParameters {
-            to: walletAddress, 
-            value: 0,
-            mode: SendRemainingValue, 
-            bounce: false,
-            body: JettonTransferInternal {
-              query_id: msg.query_id,
-              amount: msg.amount,
-              from: self.owner,
-              response_destination: msg.response_destination,
-              forward_ton_amount: msg.forward_ton_amount,
-              forward_payload: msg.forward_payload
-            }.toCell(),
-            code: init.code,
-            data: init.data
-        });
+      to: walletAddress, 
+      value: 0,
+      mode: SendRemainingValue, 
+      bounce: false,
+      body: JettonInternalTransfer {
+        query_id: msg.query_id,
+        amount: msg.amount,
+        from: self.owner,
+        response_address: msg.response_destination,
+        forward_ton_amount: msg.forward_ton_amount,
+        forward_payload: msg.forward_payload
+      }.toCell(),
+      code: init.code,
+      data: init.data
+    });
   }
 
-  receive(msg: JettonTransferInternal) {
+  receive(msg: JettonInternalTransfer) {
     let ctx: Context = context();
     if (ctx.sender != self.master) {
-      let init: StateInit = initOf JettonWallet(self.master, msg.from);
+      let init: StateInit = self.getJettonWalletInit(msg.from);
       require(contractAddress(init) == ctx.sender, "Invalid sender");
     }
 
     // Update balance
     self.balance = self.balance + msg.amount;
-    require(self.balance >= 0, "Invalid balance"); 
+    self.requireBalance();
 
     // Get value for gas
     let msgValue: Int = self.msgValue(ctx.value);
@@ -82,7 +84,7 @@ contract JettonWallet with Deployable {
         body: JettonNotification {
           query_id: msg.query_id,
           amount: msg.amount,
-          from: msg.from,
+          sender: msg.from,
           forward_payload: msg.forward_payload
         }.toCell()
       });
@@ -91,7 +93,7 @@ contract JettonWallet with Deployable {
     // Cashback to the original Sender
     if (msgValue > 0) { 
       send(SendParameters {
-        to: msg.response_destination, 
+        to: msg.response_address, 
         value: msgValue,  
         bounce: false,
         body: JettonExcesses { 
@@ -103,12 +105,12 @@ contract JettonWallet with Deployable {
   }
 
   receive(msg: JettonBurn) {
-    let ctx: Context = context();
-    require(ctx.sender == self.owner, "Invalid sender");  // Check sender
+    self.requireOwner();  // Check sender
 
     self.balance = self.balance - msg.amount; // Update balance
-    require(self.balance >= 0, "Invalid balance");
+    self.requireBalance();
 
+    let ctx: Context = context();
     let fwdFee: Int = ctx.readForwardFee(); // Gas checks
     require(ctx.value > fwdFee + 2 * self.gasConsumption + self.minTonsForStorage, "Invalid value - Burn");
 
@@ -121,7 +123,7 @@ contract JettonWallet with Deployable {
       body: JettonBurnNotification {
         query_id: msg.query_id,
         amount: msg.amount,
-        owner: self.owner,
+        sender: self.owner,
         response_destination: self.owner
       }.toCell()
     });
@@ -135,7 +137,15 @@ contract JettonWallet with Deployable {
     return msgValue;
   }
 
-  bounced(src: bounced<JettonTransferInternal>) {
+  fun getJettonWalletInit(address: Address): StateInit {
+    return initOf JettonWallet(self.master, address);
+  }
+
+  fun requireBalance() {
+    require(self.balance >= 0, "Invalid balance"); 
+  }
+
+  bounced(src: bounced<JettonInternalTransfer>) {
     self.balance = self.balance + src.amount;
   }
 
@@ -148,7 +158,7 @@ contract JettonWallet with Deployable {
       balance: self.balance,
       owner: self.owner,
       master: self.master,
-      walletCode: (initOf JettonWallet(self.master, self.owner)).code
+      walletCode: (self.getJettonWalletInit(self.owner)).code
     };
   }
 }

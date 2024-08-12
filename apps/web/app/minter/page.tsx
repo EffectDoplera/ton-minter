@@ -14,7 +14,7 @@ export default async function Minter() {
 
   const client = new TonClient({ endpoint })
 
-  const jettonMaster = JettonMaster.create(Address.parse('EQAf1Dp-Jk2Y4gxnxUC84jupoVaROkainHk6WjMHKkDezYhO'))
+  const jettonMaster = JettonMaster.create(Address.parse('EQC_LprjiutdEXJw11e4lK76FwRJgGOVO6DMOH-gnLo8byxH'))
 
   const jettonMasterContract = client.open(jettonMaster)
 

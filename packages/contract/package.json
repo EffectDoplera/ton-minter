@@ -8,19 +8,20 @@
   },
   "exports": {
     "./SimpleCounter": "./wrappers/SimpleCounter.ts",
-    "./JettonWallet": "./wrappers/JettonWallet.ts",
-    "./JettonMaster": "./wrappers/JettonMaster.ts"
+    "./JettonWallet": "./wrappers/Jetton_JettonWallet.ts",
+    "./JettonMaster": "./wrappers/Jetton_JettonMaster.ts"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@ton/blueprint": "^0.22.0",
+    "@ton/blueprint": "^0.21.0",
+    "@tact-lang/compiler": "1.4.0",
     "@ton/sandbox": "^0.20.0",
     "@ton/test-utils": "^0.4.2",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.10",
     "jest": "^29.7.0",
     "@ton/ton": "^13.11.2",
-    "@ton/core": "~0",
+    "@ton/core": "^0.56.3",
     "@ton/crypto": "^3.2.0",
     "ts-jest": "^29.2.0",
     "ts-node": "^10.9.2",

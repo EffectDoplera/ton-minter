@@ -1,12 +1,25 @@
 'use client'
 
 import { useTonConnectModal, useTonWallet } from '@/features/connect-wallet'
+import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/avatar'
 import { Button } from '@/shared/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/shared/ui/dialog'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
 import { toast } from '@/shared/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Pencil2Icon } from '@radix-ui/react-icons'
+import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { useMintJetton } from './use-mint-jetton'
@@ -70,22 +83,61 @@ export const MintJettonForm = () => {
       <CardContent className="flex flex-col items-center w-full">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="image"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Jetton Logo</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    URL of 256x256 pixel PNG image of token logo with transparent background.{' '}
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="flex gap-4">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="ghost" size="icon" className="w-25 h-25 p-1 rounded-full">
+                    <Avatar className="inline-flex w-25 h-25 group">
+                      <AvatarImage
+                        className="w-25 h-25"
+                        src={form.getValues('image')}
+                        alt="Jetton Logo"
+                        width={100}
+                        height={100}
+                      />
+                      <AvatarFallback>
+                        <Image src="/coin-logo.svg" alt="Jetton Logo placeholder" width={100} height={100} />
+                      </AvatarFallback>
+                      <div className="absolute inset-0 h-full w-full opacity-0 transition-opacity bg-slate-100 group-hover:opacity-40 grid place-items-center">
+                        <Pencil2Icon className="w-6 h-6 text-slate-500" />
+                      </div>
+                    </Avatar>
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Edit logo</DialogTitle>
+                  </DialogHeader>
+                  <FormField
+                    control={form.control}
+                    name="image"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Jetton Logo</FormLabel>
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          URL of 256x256 pixel PNG image of token logo with transparent background.{' '}
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <DialogFooter className="sm:justify-start">
+                    <DialogClose asChild>
+                      <Button type="button" variant="secondary">
+                        Close
+                      </Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+              <div>
+                <h3 className="text-xl font-bold">{`${form.getValues('name') || 'Jetton name'} (${form.getValues('symbol') || 'Symbol'})`}</h3>
+                <p className="text-lg text-zinc-500">{form.getValues('description') || 'Description'}</p>
+              </div>
+            </div>
 
             <FormField
               control={form.control}

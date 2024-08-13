@@ -5,13 +5,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '*.mypinata.cloud',
+        hostname: '**',
         port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cryptologos.cc',
-        port: '',
+        pathname: '**',
       },
     ],
   },

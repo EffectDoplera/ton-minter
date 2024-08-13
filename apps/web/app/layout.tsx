@@ -31,8 +31,8 @@ export default function RootLayout({
       <body className={cn('grid grid-rows-[auto_1fr_auto] min-h-[100dvh]', geistSans.variable, geistMono.variable)}>
         <Providers>
           <header className="p-4 sticky top-0 bg-slate-200 flex items-center justify-between">
-            <div className="flex justify-between">
-              <Image src="/next.svg" alt="Next.js logo" width={180} height={38} priority />
+            <div className="flex justify-between gap-1">
+              <Image src="/toncoin-ton-logo.svg" alt="toncoin logo" width={30} height={30} priority />
               <p className="text-2xl font-bold uppercase">Ton Minter</p>
             </div>
             <TonConnectButton />

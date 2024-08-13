@@ -1,3 +1,5 @@
+'use client'
+
 import { TonConnectUI, TonConnectUiOptions } from '@tonconnect/ui'
 import { useCallback, useContext } from 'react'
 import { TonConnectUIContext } from './ton-connect-ui-provider'

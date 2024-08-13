@@ -9,7 +9,8 @@
   "exports": {
     "./SimpleCounter": "./wrappers/SimpleCounter.ts",
     "./JettonWallet": "./wrappers/Jetton_JettonWallet.ts",
-    "./JettonMaster": "./wrappers/Jetton_JettonMaster.ts"
+    "./JettonMaster": "./wrappers/Jetton_JettonMaster.ts",
+    "./utils": "./utils/ton-tep64.ts"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",

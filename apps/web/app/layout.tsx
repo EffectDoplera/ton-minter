@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import './globals.css'
 import { TonConnectButton } from '@/features/connect-wallet'
 import { cn } from '@/shared/lib/utils'
+import { Toaster } from '@/shared/ui/toaster'
 import Image from 'next/image'
 import { Providers } from './providers'
 
@@ -38,6 +39,7 @@ export default function RootLayout({
           </header>
           {children}
           <footer className="p-4 bg-slate-200">Footer</footer>
+          <Toaster />
         </Providers>
       </body>
     </html>

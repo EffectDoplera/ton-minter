@@ -1,7 +1,7 @@
 'use client'
 
 import { CSSProperties, FunctionComponent, useEffect } from 'react'
-import { useTonConnectUI } from './useTonConnectUI'
+import { useTonConnectUI } from './use-ton-connect-ui'
 
 const buttonRootId = 'ton-connect-button'
 

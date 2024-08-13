@@ -1,3 +1,5 @@
+'use client'
+
 import { ActionConfiguration, Locales, TonConnectUI, UIPreferences, WalletsListConfiguration } from '@tonconnect/ui'
 import type { ITonConnect } from '@tonconnect/ui'
 import { createContext, FunctionComponent, ReactNode } from 'react'

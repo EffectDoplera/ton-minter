@@ -1,12 +1,11 @@
 'use client'
 
 import { useTonWallet } from '@/features/connect-wallet'
+import { MintJettonForm } from '@/features/mint-jetton'
 import { getHttpV4Endpoint } from '@orbs-network/ton-access'
 import { Address, JettonMaster, JettonWallet, TonClient4 } from '@ton/ton'
 import { CHAIN } from '@tonconnect/ui'
 import { useEffect } from 'react'
-
-const counterAddress = 'EQApvaV6zWC3U5lkHogHMWORX4_AlMJdeK9I_i93MSbs4uzV'
 
 export default function Home() {
   const wallet = useTonWallet()
@@ -40,10 +39,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center container">
-      <div className="text-xl flex flex-row items-center gap-2 ">
-        <p className="font-bold flex-shrink-0">Address of counter:</p>
-        <p className="truncate min-w-content">{counterAddress}</p>
-      </div>
+      <MintJettonForm />
     </main>
   )
 }

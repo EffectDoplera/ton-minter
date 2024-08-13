@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
+import { TonConnectButton } from '@/features/connect-wallet'
+import { cn } from '@/shared/lib/utils'
+import Image from 'next/image'
+import { Providers } from './providers'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -23,7 +27,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
+      <body className={cn('grid grid-rows-[auto_1fr_auto] min-h-[100dvh]', geistSans.variable, geistMono.variable)}>
+        <Providers>
+          <header className="p-4 sticky top-0 bg-slate-200 flex items-center justify-between">
+            <div className="flex justify-between">
+              <Image src="/next.svg" alt="Next.js logo" width={180} height={38} priority />
+              <p className="text-2xl font-bold uppercase">Ton Minter</p>
+            </div>
+            <TonConnectButton />
+          </header>
+          {children}
+          <footer className="p-4 bg-slate-200">Footer</footer>
+        </Providers>
+      </body>
     </html>
   )
 }

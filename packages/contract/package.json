@@ -7,9 +7,7 @@
     "test": "jest --verbose"
   },
   "exports": {
-    "./SimpleCounter": "./wrappers/SimpleCounter.ts",
-    "./JettonWallet": "./wrappers/Jetton_JettonWallet.ts",
-    "./JettonMaster": "./wrappers/Jetton_JettonMaster.ts",
+    "./*": "./build/*.ts",
     "./utils": "./utils/ton-tep64.ts"
   },
   "devDependencies": {

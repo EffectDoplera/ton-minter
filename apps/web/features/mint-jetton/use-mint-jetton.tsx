@@ -2,7 +2,7 @@
 
 import { useTonClient, useTonSender, useTonWallet } from '@/features/connect-wallet'
 import { toast } from '@/shared/ui/use-toast'
-import { JettonMasterImpl as JettonMaster } from '@repo/contract/JettonMaster'
+import { JettonMasterImpl as JettonMaster } from '@repo/contract/Jetton/tact_JettonMasterImpl'
 import { buildJettonContent, JettonContent } from '@repo/contract/utils'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Address, beginCell, toNano, TonClient4 } from '@ton/ton'

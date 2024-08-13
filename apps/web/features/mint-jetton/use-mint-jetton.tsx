@@ -1,10 +1,11 @@
 'use client'
 
 import { useTonClient, useTonSender, useTonWallet } from '@/features/connect-wallet'
+import { toast } from '@/shared/ui/use-toast'
 import { JettonMasterImpl as JettonMaster } from '@repo/contract/JettonMaster'
 import { buildJettonContent, JettonContent } from '@repo/contract/utils'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Address, beginCell, toNano, TonClient4 } from '@ton/ton'
-import { useEffect, useState } from 'react'
 
 class NetworkProvider {
   #tc: TonClient4
@@ -42,18 +43,25 @@ function sleep(ms: number) {
 export const useMintJetton = () => {
   const wallet = useTonWallet()
   const sender = useTonSender()
-  const [minter, setMinter] = useState<Function | null>(null)
   const client = useTonClient()
 
-  useEffect(() => {
-    if (client && wallet && sender) {
-      setMinter(() => async (data: JettonContent & { amount: string }) => {
+  // Access the client
+  const queryClient = useQueryClient()
+
+  // Mutations
+  const mutation = useMutation({
+    mutationFn: async (data: JettonContent & { amount: string }) => {
+      if (client && wallet && sender) {
         const provider = new NetworkProvider(client)
         const { amount, ...jettonData } = data
         const content = buildJettonContent(jettonData)
         const jettonMaster = await JettonMaster.fromInit(Address.parse(wallet.account.address), content)
 
         const jettonMasterContract = client.open(jettonMaster)
+
+        toast({
+          title: 'Waiting for confirmation:',
+        })
 
         await jettonMasterContract.send(
           sender,
@@ -66,7 +74,15 @@ export const useMintJetton = () => {
           },
         )
 
+        toast({
+          title: 'Waiting for deploy:',
+        })
+
         await provider.waitForDeploy(jettonMaster.address)
+
+        toast({
+          title: 'Waiting for confirmation:',
+        })
 
         await jettonMasterContract.send(
           sender,
@@ -83,9 +99,17 @@ export const useMintJetton = () => {
             forward_payload: beginCell().endCell(),
           },
         )
-      })
-    }
-  }, [client, wallet, sender])
 
-  return minter
+        toast({
+          title: 'Jetton successfully minted:',
+        })
+      }
+    },
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ['mint-jetton'] })
+    },
+  })
+
+  return mutation
 }

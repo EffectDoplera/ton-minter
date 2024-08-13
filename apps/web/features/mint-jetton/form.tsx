@@ -49,7 +49,7 @@ export const MintJettonForm = () => {
   const { open } = useTonConnectModal()
   const minter = useMintJetton()
 
-  async function onSubmit(data: z.infer<typeof FormSchema>) {
+  function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
       title: 'You submitted the following values:',
       description: (
@@ -58,7 +58,8 @@ export const MintJettonForm = () => {
         </pre>
       ),
     })
-    await minter(data)
+
+    minter.mutate(data)
   }
   return (
     <>

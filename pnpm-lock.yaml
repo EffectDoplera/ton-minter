@@ -93,6 +93,9 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@tanstack/react-query':
+        specifier: ^5.51.23
+        version: 5.51.23(react@19.0.0-rc-f994737d14-20240522)
       '@ton/crypto':
         specifier: ^3.2.0
         version: 3.3.0
@@ -1063,6 +1066,14 @@ packages:
     peerDependencies:
       '@ton/core': '>=0.49.2'
       '@ton/crypto': ^3.2.0
+
+  '@tanstack/query-core@5.51.21':
+    resolution: {integrity: sha512-POQxm42IUp6n89kKWF4IZi18v3fxQWFRolvBA6phNVmA8psdfB1MvDnGacCJdS+EOX12w/CyHM62z//rHmYmvw==}
+
+  '@tanstack/react-query@5.51.23':
+    resolution: {integrity: sha512-CfJCfX45nnVIZjQBRYYtvVMIsGgWLKLYC4xcUiYEey671n1alvTZoCBaU9B85O8mF/tx9LPyrI04A6Bs2THv4A==}
+    peerDependencies:
+      react: ^18.0.0
 
   '@ton-community/func-js-bin@0.4.4-newops.1':
     resolution: {integrity: sha512-TV4t6XhmItq4t+wv4pV30yEwb+YvdmsKo4Ig4B0zp4PLdI0r9iZHz4y5bBHcXmDQDRqulXzK6kTgfHvs2CIsaQ==}
@@ -5352,6 +5363,13 @@ snapshots:
     dependencies:
       '@ton/core': 0.56.3(@ton/crypto@3.3.0)
       '@ton/crypto': 3.3.0
+
+  '@tanstack/query-core@5.51.21': {}
+
+  '@tanstack/react-query@5.51.23(react@19.0.0-rc-f994737d14-20240522)':
+    dependencies:
+      '@tanstack/query-core': 5.51.21
+      react: 19.0.0-rc-f994737d14-20240522
 
   '@ton-community/func-js-bin@0.4.4-newops.1': {}
 

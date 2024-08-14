@@ -23,15 +23,6 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { useMintJetton } from './use-mint-jetton'
 
-/**
- * 
- * name: 'FLY',
-    description: 'FLY',
-    symbol: 'FLY',
-    decimals: '9',
-    image: 'https://cryptologos.cc/logos/cosmos-atom-logo.svg?v=032',
- */
-
 const FormSchema = z.object({
   name: z.string().min(2, {
     message: 'Jetton Name must be at least 2 characters.',

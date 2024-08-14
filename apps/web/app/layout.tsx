@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
-import { TonConnectButton } from '@/features/connect-wallet'
 import { cn } from '@/shared/lib/utils'
 import { Toaster } from '@/shared/ui/toaster'
-import Image from 'next/image'
+import { Header } from './header'
 import { Providers } from './providers'
 
 const geistSans = localFont({
@@ -30,13 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn('grid grid-rows-[auto_1fr_auto] min-h-[100dvh]', geistSans.variable, geistMono.variable)}>
         <Providers>
-          <header className="p-4 sticky z-10 top-0 bg-slate-200 flex items-center justify-between">
-            <div className="flex justify-between gap-1">
-              <Image src="/toncoin-ton-logo.svg" alt="toncoin logo" width={30} height={30} priority />
-              <p className="text-2xl font-bold uppercase">Ton Minter</p>
-            </div>
-            <TonConnectButton />
-          </header>
+          <Header />
           {children}
           <footer className="py-4 px-4">
             <p className="text-balance text-center text-sm leading-loose text-muted-foreground md:text-left">
@@ -61,8 +54,8 @@ export default function RootLayout({
               .
             </p>
           </footer>
-          <Toaster />
         </Providers>
+        <Toaster />
       </body>
     </html>
   )

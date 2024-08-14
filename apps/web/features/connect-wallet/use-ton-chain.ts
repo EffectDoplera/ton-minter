@@ -12,8 +12,8 @@ export const useTonChain = () => {
   const [chain, setChain] = useAtom(chainAtom)
 
   useEffect(() => {
-    if (wallet) setChain((CHAIN.MAINNET === wallet?.account.chain ? 'mainnet' : 'testnet') satisfies Network)
+    if (wallet) setChain(CHAIN.MAINNET === wallet?.account.chain ? 'mainnet' : 'testnet')
   }, [wallet, chain])
 
-  return chain
+  return chain as Network
 }

@@ -8,7 +8,7 @@ const queryClient = new QueryClient()
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
-    <TonConnectUIProvider manifestUrl="https://app.hipo.finance/tonconnect-manifest.json">
+    <TonConnectUIProvider manifestUrl="https://ton-minter-ashen.vercel.app/tonconnect-manifest.json">
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </TonConnectUIProvider>
   )

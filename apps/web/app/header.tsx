@@ -7,6 +7,7 @@ import { toast } from '@/shared/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -22,6 +23,8 @@ export const Header = () => {
     },
   })
 
+  const router = useRouter()
+
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
       title: 'You submitted the following values:',
@@ -31,6 +34,9 @@ export const Header = () => {
         </pre>
       ),
     })
+
+    form.reset()
+    router.push(`/jetton/${data.address}`)
   }
 
   return (

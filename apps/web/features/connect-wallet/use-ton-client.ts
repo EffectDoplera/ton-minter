@@ -10,9 +10,10 @@ export const useTonClient = () => {
   const [client, setClient] = useState<TonClient4 | null>(null)
 
   useEffect(() => {
-    getHttpV4Endpoint({ network: chainName }).then((endpoint) => {
-      setClient(new TonClient4({ endpoint }))
-    })
+    if (chainName)
+      getHttpV4Endpoint({ network: chainName }).then((endpoint) => {
+        setClient(new TonClient4({ endpoint }))
+      })
   }, [chainName])
 
   return client

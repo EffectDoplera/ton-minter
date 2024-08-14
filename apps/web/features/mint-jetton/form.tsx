@@ -3,7 +3,7 @@
 import { useTonConnectModal, useTonWallet } from '@/features/connect-wallet'
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/avatar'
 import { Button } from '@/shared/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card'
+import { Card, CardContent, CardHeader } from '@/shared/ui/card'
 import {
   Dialog,
   DialogClose,
@@ -67,12 +67,10 @@ export const MintJettonForm = () => {
   }
   return (
     <Card className="flex flex-col items-center">
-      <CardHeader>
-        <CardTitle className="text-2xl font-bold">Mint your Jetton</CardTitle>
-      </CardHeader>
+      <CardHeader></CardHeader>
       <CardContent className="flex flex-col items-center w-full">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <div className="flex gap-4">
               <Dialog>
                 <DialogTrigger asChild>

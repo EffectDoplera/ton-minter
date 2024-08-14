@@ -31,8 +31,8 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
-          <footer className="py-4 px-4">
-            <p className="text-balance text-center text-sm leading-loose text-muted-foreground md:text-left">
+          <footer className="py-4 px-4 bg-slate-800">
+            <p className="text-balance text-center text-sm leading-loose text-muted md:text-left">
               Built by{' '}
               <a
                 href="https://github.com/EffectDoplera"

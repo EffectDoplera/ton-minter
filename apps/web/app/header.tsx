@@ -1,9 +1,11 @@
 'use client'
 
 import { TonConnectButton } from '@/features/connect-wallet'
+import { SelectChainButton } from '@/features/select-chain'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
 import { toast } from '@/shared/ui/use-toast'
+import { ChainIndicator } from '@/widgets/chain-indicator'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
@@ -46,7 +48,11 @@ export const Header = () => {
           <Image src="/toncoin-ton-logo.svg" alt="toncoin logo" width={30} height={30} priority />
           <p className="text-2xl font-bold uppercase">Ton Minter</p>
         </div>
-        <TonConnectButton />
+        <div className="flex justify-between gap-1">
+          <ChainIndicator />
+          <SelectChainButton />
+          <TonConnectButton />
+        </div>
       </div>
 
       <div>

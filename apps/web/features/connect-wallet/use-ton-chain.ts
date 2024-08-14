@@ -1,17 +1,19 @@
 'use client'
 
+import { chainAtom } from '@/entities/chain'
 import { Network } from '@orbs-network/ton-access'
 import { CHAIN } from '@tonconnect/ui'
-import { useEffect, useState } from 'react'
+import { useAtom } from 'jotai'
+import { useEffect } from 'react'
 import { useTonWallet } from './use-ton-wallet'
 
 export const useTonChain = () => {
   const wallet = useTonWallet()
-  const [chain, setChain] = useState<Network | null>(null)
+  const [chain, setChain] = useAtom(chainAtom)
 
   useEffect(() => {
     if (wallet) setChain((CHAIN.MAINNET === wallet?.account.chain ? 'mainnet' : 'testnet') satisfies Network)
-  }, [wallet])
+  }, [wallet, chain])
 
   return chain
 }

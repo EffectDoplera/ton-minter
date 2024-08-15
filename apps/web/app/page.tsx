@@ -39,11 +39,9 @@ export default function Home() {
   }, [wallet])
 
   return (
-    <main className="p-8 mx-auto md:px-12 lg:px-32 max-w-7xl">
-      <section className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-4">
-        <MintJettonForm />
-        <Description />
-      </section>
-    </main>
+    <>
+      <MintJettonForm />
+      <Description />
+    </>
   )
 }

@@ -21,7 +21,7 @@ export const SelectChainButton = () => {
         <Button
           variant="outline"
           size="icon"
-          className="bg-[#0098EA] text-white rounded-full hover:bg-[#0098EA]/80 hover:text-white"
+          className="bg-[#0098EA] text-white rounded-full border-none hover:bg-[#0098EA]/80 hover:text-white"
         >
           <GearIcon className="w-4 h-4" />
         </Button>

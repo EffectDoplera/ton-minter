@@ -42,7 +42,7 @@ export const Header = () => {
   }
 
   return (
-    <header className="p-4 sticky z-10 top-0 bg-slate-800 flex flex-col gap-4 rounded-b-3xl">
+    <header className="p-4 sticky z-30 inset-0 bg-slate-800 flex flex-col gap-4 rounded-b-3xl">
       <div className="flex items-center justify-between">
         <div className="flex justify-between gap-1">
           <Image src="/toncoin-ton-logo.svg" alt="toncoin logo" width={30} height={30} priority />

@@ -2,12 +2,14 @@
 
 import { JettonImage } from '@/entities/jetton'
 import { JettonWalletInfoCard } from '@/entities/jetton-wallet'
+import { useTonWallet } from '@/features/connect-wallet'
 import { Card, CardContent } from '@/shared/ui/card'
-import { fromNano } from '@ton/ton'
+import { Address, fromNano } from '@ton/ton'
 import { useJettonWallet } from './use-jetton-wallet'
 
 export default function JettonPage({ params }: { params: { address: string } }) {
   const { data, isLoading } = useJettonWallet(params)
+  const wallet = useTonWallet()
 
   if (isLoading) return <div>Loading...</div>
 
@@ -61,7 +63,14 @@ export default function JettonPage({ params }: { params: { address: string } }) 
           </div>
         </CardContent>
       </Card>
-      <JettonWalletInfoCard address={data?.walletAddress.toString() || ''} balance={data?.balance} />
+      <JettonWalletInfoCard
+        address={data?.walletAddress.toString() || ''}
+        balance={data?.balance}
+        transferable={
+          Address.isRaw(wallet?.account.address || '') &&
+          Address.parse(wallet?.account.address || '').equals(data!.adminAddress)
+        }
+      />
     </>
   )
 }

@@ -1,3 +1,5 @@
+'use client'
+
 import { formatJettonBalance } from '@/entities/jetton'
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card'
 import { Input } from '@/shared/ui/input'
@@ -6,9 +8,14 @@ import { JettonWalletTransfer } from './jetton-walet-transfer'
 interface JettonWalletInfoCardProps {
   address: string
   balance?: number | bigint
+  transferable?: boolean
 }
 
-export const JettonWalletInfoCard: React.FC<JettonWalletInfoCardProps> = ({ address, balance, ...props }) => {
+export const JettonWalletInfoCard: React.FC<JettonWalletInfoCardProps> = ({
+  address,
+  balance,
+  transferable = false,
+}) => {
   return (
     <Card>
       <CardHeader>
@@ -25,7 +32,7 @@ export const JettonWalletInfoCard: React.FC<JettonWalletInfoCardProps> = ({ addr
           <Input readOnly value={formatJettonBalance(balance)} className="truncate min-w-content" />
         </div>
 
-        <JettonWalletTransfer />
+        {transferable && <JettonWalletTransfer />}
       </CardContent>
     </Card>
   )

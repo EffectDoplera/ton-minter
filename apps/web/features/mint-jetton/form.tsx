@@ -1,7 +1,7 @@
 'use client'
 
+import { JettonImage, JettonInfo } from '@/entities/jetton'
 import { useTonConnectModal, useTonWallet } from '@/features/connect-wallet'
-import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/avatar'
 import { Button } from '@/shared/ui/button'
 import { Card, CardContent, CardHeader } from '@/shared/ui/card'
 import {
@@ -17,8 +17,6 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@/shared/ui/input'
 import { toast } from '@/shared/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Pencil2Icon } from '@radix-ui/react-icons'
-import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { useMintJetton } from './use-mint-jetton'
@@ -75,21 +73,7 @@ export const MintJettonForm = () => {
               <Dialog>
                 <DialogTrigger asChild>
                   <Button variant="ghost" size="icon" className="w-25 h-25 p-1 rounded-full">
-                    <Avatar className="inline-flex w-25 h-25 group">
-                      <AvatarImage
-                        className="w-25 h-25"
-                        src={form.getValues('image')}
-                        alt="Jetton Logo"
-                        width={100}
-                        height={100}
-                      />
-                      <AvatarFallback>
-                        <Image src="/coin-logo.svg" alt="Jetton Logo placeholder" width={100} height={100} />
-                      </AvatarFallback>
-                      <div className="absolute inset-0 h-full w-full opacity-0 transition-opacity bg-slate-100 group-hover:opacity-40 grid place-items-center">
-                        <Pencil2Icon className="w-6 h-6 text-slate-500" />
-                      </div>
-                    </Avatar>
+                    <JettonImage src={form.getValues('image')} editable />
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-md">
@@ -121,10 +105,11 @@ export const MintJettonForm = () => {
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
-              <div>
-                <h3 className="text-xl font-bold">{`${form.getValues('name') || 'Jetton name'} (${form.getValues('symbol') || 'Symbol'})`}</h3>
-                <p className="text-lg text-zinc-500">{form.getValues('description') || 'Description'}</p>
-              </div>
+              <JettonInfo
+                name={form.getValues('name')}
+                symbol={form.getValues('symbol')}
+                description={form.getValues('description')}
+              />
             </div>
 
             <FormField

@@ -9,6 +9,9 @@
 # testing
 /coverage
 
+# Loacal db files
+*.db
+
 # next.js
 /.next/
 /out/

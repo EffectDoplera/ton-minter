@@ -15,7 +15,6 @@ import {
 } from '@/shared/ui/dialog'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
-import { toast } from '@/shared/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -51,17 +50,8 @@ export const MintJettonForm = () => {
   const { open } = useTonConnectModal()
   const minter = useMintJetton()
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
-
-    minter.mutate(data)
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    await minter.mutateAsync(data)
   }
   return (
     <Card className="flex flex-col items-center">

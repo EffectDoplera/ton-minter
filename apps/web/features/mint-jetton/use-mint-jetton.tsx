@@ -100,6 +100,16 @@ export const useMintJetton = () => {
           },
         )
 
+        await fetch('/api/jetton', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            address: jettonMasterContract.address.toString(),
+          }),
+        })
+
         toast({
           title: 'Jetton successfully minted:',
         })

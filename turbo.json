@@ -10,8 +10,24 @@
       "dependsOn": ["^lint"]
     },
     "dev": {
+      "inputs": ["$TURBO_DEFAULT$", ".env"],
       "cache": false,
       "persistent": true
+    },
+    "web#db:push": {
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
+    },
+    "web#db:generate": {
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
+    },
+    "web#db:migrate": {
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
+    },
+    "web#db:drop": {
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
+    },
+    "web#db:studio": {
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
     }
   }
 }

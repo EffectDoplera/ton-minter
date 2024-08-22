@@ -65,10 +65,9 @@ export const MintJettonForm = () => {
   }
   return (
     <Card className="flex flex-col items-center">
-      <CardHeader></CardHeader>
-      <CardContent className="flex flex-col items-center w-full">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <CardHeader>
             <div className="flex gap-4">
               <Dialog>
                 <DialogTrigger asChild>
@@ -111,12 +110,14 @@ export const MintJettonForm = () => {
                 description={form.watch('description')}
               />
             </div>
+          </CardHeader>
 
+          <CardContent className="flex flex-col items-center w-full space-y-4">
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="w-full">
                   <FormLabel>Jetton Name</FormLabel>
                   <FormControl>
                     <Input {...field} />
@@ -131,7 +132,7 @@ export const MintJettonForm = () => {
               control={form.control}
               name="symbol"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="w-full">
                   <FormLabel>Jetton Symbol</FormLabel>
                   <FormControl>
                     <Input {...field} />
@@ -146,7 +147,7 @@ export const MintJettonForm = () => {
               control={form.control}
               name="decimals"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="w-full">
                   <FormLabel>Jetton Decimals</FormLabel>
                   <FormControl>
                     <Input type="number" {...field} />
@@ -161,7 +162,7 @@ export const MintJettonForm = () => {
               control={form.control}
               name="amount"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="w-full">
                   <FormLabel>Jettons to mint</FormLabel>
                   <FormControl>
                     <Input {...field} />
@@ -178,7 +179,7 @@ export const MintJettonForm = () => {
               control={form.control}
               name="description"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="w-full">
                   <FormLabel>Description</FormLabel>
                   <FormControl>
                     <Input {...field} />
@@ -188,11 +189,13 @@ export const MintJettonForm = () => {
                 </FormItem>
               )}
             />
+
+            <p className="text-[0.8rem] text-muted-foreground">You will need at least 0.25 TON for deployment fees</p>
             {wallet && <Button type="submit">Deploy</Button>}
             {!wallet && <Button onClick={open}>Connect wallet</Button>}
-          </form>
-        </Form>
-      </CardContent>
+          </CardContent>
+        </form>
+      </Form>
     </Card>
   )
 }

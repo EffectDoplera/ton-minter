@@ -90,7 +90,7 @@ export const MintJettonForm = () => {
                           <Input {...field} />
                         </FormControl>
                         <FormDescription>
-                          URL of 256x256 pixel PNG image of token logo with transparent background.{' '}
+                          URL of 256x256 pixel PNG image of token logo with transparent background.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -106,9 +106,9 @@ export const MintJettonForm = () => {
                 </DialogContent>
               </Dialog>
               <JettonInfo
-                name={form.getValues('name')}
-                symbol={form.getValues('symbol')}
-                description={form.getValues('description')}
+                name={form.watch('name')}
+                symbol={form.watch('symbol')}
+                description={form.watch('description')}
               />
             </div>
 

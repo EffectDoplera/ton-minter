@@ -1,3 +1,5 @@
+'use client'
+
 import { isMainnetAtom } from '@/entities/chain'
 import { Badge } from '@/shared/ui/badge'
 import { useAtom } from 'jotai'

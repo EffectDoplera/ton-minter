@@ -32,7 +32,7 @@ export default function RootLayout({
           <Header />
           <main className="flex flex-1 relative z-10 max-w-[100vw] overflow-hidden py-8">
             <div className="relative z-20 px-8 mx-auto max-w-7xl">
-              <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-4">{children}</div>
+              <div className="grid grid-cols-1 gap-12">{children}</div>
             </div>
           </main>
           <footer className="py-4 px-4 bg-slate-800">

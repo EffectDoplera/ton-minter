@@ -109,7 +109,7 @@ export const useMintJetton = () => {
           },
         )
 
-        await fetch('/api/jetton', {
+        await fetch('/api/jettons', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

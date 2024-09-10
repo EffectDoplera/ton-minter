@@ -25,7 +25,7 @@ export const SelectChainButton = () => {
       <DropdownMenuTrigger asChild>
         <TooltipProvider>
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger asChild>
               <Button
                 variant="outline"
                 size="icon"

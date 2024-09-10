@@ -4,6 +4,7 @@ import * as schema from './schema'
 
 export const client = createClient({
   url: process.env.DB_CONNECTION_URL!,
+  authToken: process.env.DB_CONNECTION_TOKEN!,
 })
 
 export const db = drizzle(client, { schema })

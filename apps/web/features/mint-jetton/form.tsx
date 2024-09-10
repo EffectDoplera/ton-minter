@@ -182,7 +182,11 @@ export const MintJettonForm = () => {
 
             <p className="text-[0.8rem] text-muted-foreground">You will need at least 0.25 TON for deployment fees</p>
             {wallet && <Button type="submit">Deploy</Button>}
-            {!wallet && <Button onClick={open}>Connect wallet</Button>}
+            {!wallet && (
+              <Button type="button" onClick={open}>
+                Connect wallet
+              </Button>
+            )}
           </CardContent>
         </form>
       </Form>

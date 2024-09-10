@@ -30,3 +30,13 @@ export const POST = async (req: Request) => {
 
   return new Response(JSON.stringify({ data: 'Jetton created' }), { status: 200 })
 }
+
+export const GET = async () => {
+  const query = await db.query.jettons.findMany({
+    orderBy: (jettons, { asc }) => asc(jettons.id),
+    with: {
+      meta: true,
+    },
+  })
+  return new Response(JSON.stringify({ data: query }), { status: 200 })
+}

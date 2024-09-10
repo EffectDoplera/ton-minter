@@ -25,8 +25,10 @@ export const SelectChainButton = () => {
         <Button
           variant="outline"
           size="icon"
-          className="bg-[#0098EA] text-white rounded-full border-none hover:bg-[#0098EA]/80 hover:text-white"
-          disabled={!!wallet}
+          className={cn(
+            'bg-[#0098EA] text-white rounded-full border-none hover:bg-[#0098EA]/80 hover:text-white',
+            wallet && 'hidden',
+          )}
         >
           <GearIcon className="w-4 h-4" />
         </Button>

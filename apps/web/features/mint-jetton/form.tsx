@@ -31,6 +31,11 @@ const FormSchema = z.object({
   amount: z.string(),
   description: z.string(),
   image: z.string(),
+  meta: z.object({
+    website: z.string(),
+    twitter: z.string(),
+    telegram: z.string(),
+  }),
 })
 
 export const MintJettonForm = () => {
@@ -43,6 +48,11 @@ export const MintJettonForm = () => {
       amount: '',
       description: '',
       image: '',
+      meta: {
+        website: '',
+        twitter: '',
+        telegram: '',
+      },
     },
   })
 
@@ -175,6 +185,51 @@ export const MintJettonForm = () => {
                     <Input {...field} />
                   </FormControl>
                   <FormDescription>Optional sentence explaining about your project.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="meta.website"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel>Website</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormDescription>Optional</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="meta.twitter"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel>Twitter</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormDescription>Optional</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="meta.telegram"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel>Telegram</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormDescription>Optional</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

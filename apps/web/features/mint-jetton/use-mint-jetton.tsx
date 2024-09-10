@@ -7,6 +7,15 @@ import { buildJettonContent, JettonContent } from '@repo/contract/utils'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Address, beginCell, toNano, TonClient4 } from '@ton/ton'
 
+type JettonMeta = {
+  amount: string
+  meta: {
+    website: string
+    twitter: string
+    telegram: string
+  }
+}
+
 class NetworkProvider {
   #tc: TonClient4
   constructor(tc: TonClient4) {
@@ -50,17 +59,17 @@ export const useMintJetton = () => {
 
   // Mutations
   const mutation = useMutation({
-    mutationFn: async (data: JettonContent & { amount: string }) => {
+    mutationFn: async (data: JettonContent & JettonMeta) => {
       if (client && wallet && sender) {
         const provider = new NetworkProvider(client)
-        const { amount, ...jettonData } = data
+        const { amount, meta, ...jettonData } = data
         const content = buildJettonContent(jettonData)
         const jettonMaster = await JettonMaster.fromInit(Address.parse(wallet.account.address), content)
 
         const jettonMasterContract = client.open(jettonMaster)
 
         toast({
-          title: 'Waiting for confirmation:',
+          title: 'Please confirm the transaction in your wallet',
         })
 
         await jettonMasterContract.send(
@@ -107,6 +116,10 @@ export const useMintJetton = () => {
           },
           body: JSON.stringify({
             address: jettonMasterContract.address.toString(),
+            name: jettonData.name,
+            symbol: jettonData.symbol,
+            description: jettonData.description,
+            meta,
           }),
         })
 

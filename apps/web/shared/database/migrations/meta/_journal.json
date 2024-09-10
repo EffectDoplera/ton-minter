@@ -15,6 +15,13 @@
       "when": 1724321203703,
       "tag": "0001_boring_vermin",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1724334963461,
+      "tag": "0002_chemical_lethal_legion",
+      "breakpoints": true
     }
   ]
 }

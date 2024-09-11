@@ -7,6 +7,6 @@ export const client = createClient({
   authToken: process.env.DB_CONNECTION_TOKEN!,
 })
 
-export const db = drizzle(client, { schema })
+export const db = drizzle(client, { schema, logger: true })
 
 export * from './schema'

@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo dev",
+    "dev": "turbo dev --filter web",
     "lint": "turbo lint",
     "db:push": "turbo run db:push",
     "db:generate": "turbo run db:generate",

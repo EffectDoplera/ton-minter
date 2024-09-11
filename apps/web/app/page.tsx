@@ -3,7 +3,7 @@ import { db } from '@/shared/database'
 
 const getJettons = async () => {
   const query = await db.query.jettons.findMany({
-    orderBy: (jettons, { asc }) => asc(jettons.id),
+    orderBy: (jettons, { desc }) => desc(jettons.id),
     with: {
       meta: true,
     },

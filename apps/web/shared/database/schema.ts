@@ -7,6 +7,8 @@ export const jettons = sqliteTable('jettons', {
   name: text('name').notNull(),
   symbol: text('symbol').notNull(),
   description: text('description'),
+  image: text('image'),
+  minter: text('minter').notNull().default(''),
 })
 
 export const jettonsRelations = relations(jettons, ({ one }) => ({

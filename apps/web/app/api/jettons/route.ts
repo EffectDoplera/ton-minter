@@ -18,6 +18,8 @@ export const POST = async (req: Request) => {
         name: body.name,
         symbol: body.symbol,
         description: body.description,
+        image: body.image,
+        minter: body.minter,
       })
       .returning()
 

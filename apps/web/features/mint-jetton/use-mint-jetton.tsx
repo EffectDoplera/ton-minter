@@ -119,6 +119,8 @@ export const useMintJetton = () => {
             name: jettonData.name,
             symbol: jettonData.symbol,
             description: jettonData.description,
+            image: jettonData.image,
+            minter: sender.address?.toString() ?? '',
             meta,
           }),
         })

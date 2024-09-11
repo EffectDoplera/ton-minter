@@ -1,4 +1,4 @@
-CREATE TABLE `jettons_meta` (
+CREATE TABLE IF NOT EXISTS `jettons_meta` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`jetton_id` integer NOT NULL,
 	`website` text,

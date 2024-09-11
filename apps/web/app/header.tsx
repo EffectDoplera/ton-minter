@@ -1,3 +1,5 @@
+import { MainNav } from '@/app/main-nav'
+import { MobileNav } from '@/app/mobile-nav'
 import { TonConnectButton } from '@/features/connect-wallet'
 import { SearchByAddresForm } from '@/features/search-by-address'
 import { SelectChainButton } from '@/features/select-chain'
@@ -15,7 +17,9 @@ export const Header = () => {
           <Image src="/toncoin-ton-logo.svg" alt="toncoin logo" width={30} height={30} priority />
           <p className="text-2xl font-bold uppercase text-white hidden sm:block">Ton Minter</p>
         </Link>
-        <div className="flex justify-between gap-1">
+        <MainNav />
+        <MobileNav />
+        <div className="hidden md:flex justify-between gap-1">
           <ChainIndicator />
           <SelectChainButton />
           <TonConnectButton />

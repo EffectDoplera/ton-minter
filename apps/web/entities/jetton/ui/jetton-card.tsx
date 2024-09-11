@@ -21,7 +21,12 @@ const ENABLE_BADGE = false
 export const JettonCard: FC<JettonCardProps> = ({ jetton: { name, symbol, description, meta, image, minter } }) => {
   return (
     <Card className="max-w-[345px] relative overflow-hidden">
-      <Image src={image ?? ''} alt="Jetton Logo" width={345} height={242} priority />
+      <Image
+        src={image || 'https://cdn.sunpump.meme/public/logo/GOKU_TEW71u_O1eiYMiRWcrt.jpeg'}
+        alt="Jetton Logo"
+        width={345}
+        height={242}
+      />
       <CardContent className="p-6 space-y-2">
         <div className="flex justify-between items-center gap-2">
           <CardDescription>

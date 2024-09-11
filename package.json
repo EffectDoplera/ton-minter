@@ -16,7 +16,7 @@
     "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
     "@mhld/prettier-config": "^2.0.0",
     "prettier": "^3.2.5",
-    "turbo": "^2.0.9",
+    "turbo": "^2.1.1",
     "typescript": "5.5.4"
   },
   "resolutions": {

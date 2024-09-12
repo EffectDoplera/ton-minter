@@ -2,7 +2,7 @@
 
 import { useTonConnectModal, useTonWallet } from '@/features/connect-wallet'
 import { Button } from '@/shared/ui/button'
-import { Sheet, SheetContent, SheetTrigger } from '@/shared/ui/sheet'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/shared/ui/sheet'
 import { MenuIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -20,6 +20,9 @@ export const MobileNav = () => {
         </Button>
       </SheetTrigger>
       <SheetContent className="flex flex-col w-full sm:max-w-full">
+        <SheetHeader>
+          <SheetTitle>Ton Minter</SheetTitle>
+        </SheetHeader>
         <ul className="flex flex-col flex-1">
           <li>
             <Link href="/" className="py-4 block">

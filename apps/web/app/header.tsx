@@ -11,7 +11,7 @@ const ENABLE_SEARCH_BY_ADDRESS = false
 
 export const Header = () => {
   return (
-    <header className="p-4 sticky z-30 inset-0 bg-slate-800 flex flex-col gap-4 rounded-b-3xl">
+    <header className="p-4 sticky z-30 inset-0 bg-background flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <Link className="flex justify-between gap-1" href="/">
           <Image src="/toncoin-ton-logo.svg" alt="toncoin logo" width={30} height={30} priority />

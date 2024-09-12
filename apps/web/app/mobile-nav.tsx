@@ -5,12 +5,18 @@ import { Button } from '@/shared/ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/shared/ui/sheet'
 import { MenuIcon } from 'lucide-react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 export const MobileNav = () => {
   const [openSheet, setOpenSheet] = useState(false)
+  const path = usePathname()
   const wallet = useTonWallet()
   const { open } = useTonConnectModal()
+
+  useEffect(() => {
+    setOpenSheet(false)
+  }, [path])
 
   return (
     <Sheet open={openSheet} onOpenChange={setOpenSheet}>
@@ -21,7 +27,9 @@ export const MobileNav = () => {
       </SheetTrigger>
       <SheetContent className="flex flex-col w-full sm:max-w-full">
         <SheetHeader>
-          <SheetTitle>Ton Minter</SheetTitle>
+          <SheetTitle className="text-3xl bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 text-transparent bg-clip-text">
+            TONPUMP
+          </SheetTitle>
         </SheetHeader>
         <ul className="flex flex-col flex-1">
           <li>

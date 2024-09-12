@@ -15,7 +15,9 @@ export const Header = () => {
       <div className="flex items-center justify-between">
         <Link className="flex justify-between gap-1" href="/">
           <Image src="/toncoin-ton-logo.svg" alt="toncoin logo" width={30} height={30} priority />
-          <p className="text-2xl font-bold uppercase text-white hidden sm:block">Ton Minter</p>
+          <p className="text-2xl font-bold uppercase hidden sm:block bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 text-transparent bg-clip-text">
+            TonPump
+          </p>
         </Link>
         <MainNav />
         <MobileNav />

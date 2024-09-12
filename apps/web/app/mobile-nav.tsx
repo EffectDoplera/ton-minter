@@ -20,12 +20,16 @@ export const MobileNav = () => {
         </Button>
       </SheetTrigger>
       <SheetContent className="flex flex-col w-full sm:max-w-full">
-        <ul className="flex flex-col flex-1 gap-2">
+        <ul className="flex flex-col flex-1">
           <li>
-            <Link href="/">Home</Link>
+            <Link href="/" className="py-4 block">
+              Home
+            </Link>
           </li>
           <li>
-            <Link href="/create-jetton">Launch</Link>
+            <Link href="/create-jetton" className="py-4 block">
+              Launch
+            </Link>
           </li>
         </ul>
         {!wallet && (

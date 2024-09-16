@@ -64,7 +64,7 @@ export const MintJettonForm = () => {
     await minter.mutateAsync(data)
   }
   return (
-    <Card className="flex flex-col items-center">
+    <Card className="flex flex-col items-center max-w-96">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <CardHeader>

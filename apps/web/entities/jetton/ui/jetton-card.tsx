@@ -1,31 +1,29 @@
 import { toShortAddress } from '@/entities/address'
 import { Badge } from '@/shared/ui/badge'
 import { Card, CardContent, CardDescription, CardFooter, CardTitle } from '@/shared/ui/card'
-import { GlobeIcon, InstagramIcon, TwitterIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
+import { getSocialLinks } from '../lib'
+import { JettonSocialLinks } from './jetton-social-links'
 
 interface JettonCardProps {
   jetton: any
 }
 
-const ICON_MAP = {
-  twitter: TwitterIcon,
-  telegram: InstagramIcon,
-  website: GlobeIcon,
-}
-
 const ENABLE_BADGE = false
 
 export const JettonCard: FC<JettonCardProps> = ({ jetton: { name, symbol, description, meta, image, minter } }) => {
+  const socialLinks = getSocialLinks(meta)
+
   return (
-    <Card className="max-w-[345px] relative overflow-hidden">
+    <Card className="relative overflow-hidden">
       <Image
         src={image || 'https://cdn.sunpump.meme/public/logo/GOKU_TEW71u_O1eiYMiRWcrt.jpeg'}
         alt="Jetton Logo"
         width={345}
         height={242}
+        className="w-full h-full"
       />
       <CardContent className="p-6 space-y-2">
         <div className="flex justify-between items-center gap-2">
@@ -33,23 +31,13 @@ export const JettonCard: FC<JettonCardProps> = ({ jetton: { name, symbol, descri
             Created by: <Link href="#">{toShortAddress(minter)}</Link>
           </CardDescription>
           <CardDescription className="flex gap-1">
-            {Object.entries(meta)
-              .filter(([key]) => !['id', 'jettonId'].includes(key))
-              .map(([key, value]) => {
-                const Icon = ICON_MAP[key as keyof typeof ICON_MAP]
-
-                return (
-                  <Link key={key} href={value as string}>
-                    <Icon className="w-4 h-4" />
-                  </Link>
-                )
-              })}
+            <JettonSocialLinks links={socialLinks} />
           </CardDescription>
         </div>
         <CardTitle>
           {name} ($ {symbol})
         </CardTitle>
-        <CardDescription className="line-clamp-3">{description}</CardDescription>
+        <CardDescription className="line-clamp-3 min-h-4">{description}</CardDescription>
       </CardContent>
       <CardFooter>
         <CardDescription>Market Cap: $0.00</CardDescription>

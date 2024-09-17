@@ -31,7 +31,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <main className="flex flex-1 relative z-10 max-w-[100vw] overflow-hidden py-8">
-            <div className="relative z-20 px-8 w-full max-w-screen-xl mx-auto my-auto grid grid-cols-1 gap-12 place-items-center">
+            <div className="relative z-20 px-8 w-full max-w-screen-xl mx-auto my-auto grid grid-cols-1 gap-12">
               {children}
             </div>
           </main>

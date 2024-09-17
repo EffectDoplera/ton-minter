@@ -1,15 +1,18 @@
 import { JettonCard } from '@/entities/jetton'
 import { db } from '@/shared/database'
+import { notFound } from 'next/navigation'
+import { cache } from 'react'
 
-const getJettons = async () => {
+const getJettons = cache(async () => {
   const query = await db.query.jettons.findMany({
     orderBy: (jettons, { desc }) => desc(jettons.id),
     with: {
       meta: true,
     },
   })
+  if (!query) notFound()
   return query
-}
+})
 
 export default async function Home() {
   const data = await getJettons()

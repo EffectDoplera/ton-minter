@@ -3,10 +3,11 @@ import { Card, CardContent, CardDescription, CardTitle } from '@/shared/ui/card'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getSocialLinks } from '../lib'
+import { JettonWithMeta } from '../model'
 import { JettonSocialLinks } from './jetton-social-links'
 
 interface JettonPreviewProps {
-  jetton: any
+  jetton: JettonWithMeta
 }
 
 export const JettonPreview: React.FC<JettonPreviewProps> = ({

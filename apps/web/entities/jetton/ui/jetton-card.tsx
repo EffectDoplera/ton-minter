@@ -13,7 +13,9 @@ interface JettonCardProps {
 
 const ENABLE_BADGE = false
 
-export const JettonCard: FC<JettonCardProps> = ({ jetton: { name, symbol, description, meta, image, minter } }) => {
+export const JettonCard: FC<JettonCardProps> = ({
+  jetton: { name, symbol, address, description, meta, image, minter },
+}) => {
   const socialLinks = getSocialLinks(meta)
 
   return (
@@ -23,18 +25,18 @@ export const JettonCard: FC<JettonCardProps> = ({ jetton: { name, symbol, descri
         alt="Jetton Logo"
         width={345}
         height={242}
-        className="w-full h-full"
+        className="w-full"
       />
       <CardContent className="p-6 space-y-2">
-        <div className="flex justify-between items-center gap-2">
-          <CardDescription>
+        <div className="flex justify-between items-center gap-2 relative">
+          <div className="text-sm text-muted-foreground absolute left-0 z-50">
             Created by: <Link href="#">{toShortAddress(minter)}</Link>
-          </CardDescription>
-          <CardDescription className="flex gap-1">
+          </div>
+          <div className="flex gap-1 text-sm text-muted-foreground absolute right-0 z-50">
             <JettonSocialLinks links={socialLinks} />
-          </CardDescription>
+          </div>
         </div>
-        <CardTitle>
+        <CardTitle className="pt-2">
           {name} ($ {symbol})
         </CardTitle>
         <CardDescription className="line-clamp-3 min-h-4">{description}</CardDescription>
@@ -50,6 +52,7 @@ export const JettonCard: FC<JettonCardProps> = ({ jetton: { name, symbol, descri
           </Badge>
         </div>
       )}
+      <Link className="absolute inset-0 w-full" href={`/jetton/${address}`} />
     </Card>
   )
 }

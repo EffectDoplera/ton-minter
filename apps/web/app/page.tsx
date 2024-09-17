@@ -1,6 +1,5 @@
 import { JettonCard } from '@/entities/jetton'
 import { db } from '@/shared/database'
-import Link from 'next/link'
 
 const getJettons = async () => {
   const query = await db.query.jettons.findMany({
@@ -22,9 +21,7 @@ export default async function Home() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-center">
         {data.map((jetton) => (
-          <Link key={jetton.id} href={`/jetton/${jetton.address}`}>
-            <JettonCard jetton={jetton} />
-          </Link>
+          <JettonCard key={jetton.id} jetton={jetton} />
         ))}
       </div>
     </>

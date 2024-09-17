@@ -1,4 +1,4 @@
 CREATE TABLE IF NOT EXISTS `jettons` (
-	`id` text PRIMARY KEY NOT NULL,
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`address` text NOT NULL
 );

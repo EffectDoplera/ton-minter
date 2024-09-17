@@ -5,10 +5,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import { getSocialLinks } from '../lib'
+import { JettonWithMeta } from '../model'
 import { JettonSocialLinks } from './jetton-social-links'
 
 interface JettonCardProps {
-  jetton: any
+  jetton: JettonWithMeta
 }
 
 const ENABLE_BADGE = false

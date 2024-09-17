@@ -31,3 +31,7 @@ export const jettonsMetaRelations = relations(jettonsMeta, ({ one }) => ({
     references: [jettons.id],
   }),
 }))
+
+export type Jetton = typeof jettons.$inferSelect
+export type JettonMeta = typeof jettonsMeta.$inferSelect
+export type JettonWithMeta = Jetton & { meta: JettonMeta }

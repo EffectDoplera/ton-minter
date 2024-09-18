@@ -2,7 +2,7 @@
   "name": "demo-next-ton-starter-kit",
   "private": true,
   "scripts": {
-    "build": "turbo build --force",
+    "build": "turbo build",
     "dev": "turbo dev --filter web",
     "lint": "turbo lint",
     "db:push": "turbo run db:push",

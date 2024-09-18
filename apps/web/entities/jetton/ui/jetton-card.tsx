@@ -20,7 +20,7 @@ export const JettonCard: FC<JettonCardProps> = ({
   const socialLinks = getSocialLinks(meta)
 
   return (
-    <Card className="relative overflow-hidden max-w-[345px]">
+    <Card className="relative overflow-hidden">
       {image && <Image src={image} alt="Jetton Logo" width={345} height={328} className="rounded-lg w-full" />}
       {!image && (
         <div className="w-full h-[280px] bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 rounded-lg"></div>

@@ -8,7 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/shared/ui/breadcrumb'
-import { Card } from '@/shared/ui/card'
+import { ComingSoon, ComingSoonContent } from '@/shared/ui/coming-soon'
 import { notFound } from 'next/navigation'
 import { cache } from 'react'
 
@@ -40,8 +40,12 @@ const JettonPage = async ({ params }: { params: { address: string } }) => {
       </Breadcrumb>
 
       <JettonPreview jetton={data} />
-      <Card className="h-96 grid place-content-center md:col-span-8">CHART</Card>
-      <Card className="h-96 grid place-content-center md:col-span-4">TRADE</Card>
+      <ComingSoon className="h-96 grid place-content-center md:col-span-4">
+        <ComingSoonContent>CHART</ComingSoonContent>
+      </ComingSoon>
+      <ComingSoon className="h-96 grid place-content-center md:col-span-4">
+        <ComingSoonContent>Trade</ComingSoonContent>
+      </ComingSoon>
     </div>
   )
 }

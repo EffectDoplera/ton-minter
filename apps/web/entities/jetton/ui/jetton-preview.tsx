@@ -9,6 +9,8 @@ interface JettonPreviewProps {
   jetton: JettonWithMeta
 }
 
+const ENABLE_MARKET_CAP = false
+
 export const JettonPreview: React.FC<JettonPreviewProps> = ({
   jetton: { name, symbol, description, meta, image, minter },
 }) => {
@@ -39,13 +41,15 @@ export const JettonPreview: React.FC<JettonPreviewProps> = ({
         </div>
       </CardContent>
 
-      <div className="grid grid-cols-3 gap-4">
-        <Card className="text-center">PRICE</Card>
+      {ENABLE_MARKET_CAP && (
+        <div className="grid grid-cols-3 gap-4">
+          <Card className="text-center">PRICE</Card>
 
-        <Card className="text-center">Marketcap</Card>
+          <Card className="text-center">Marketcap</Card>
 
-        <Card className="text-center">Virtual Liquidity</Card>
-      </div>
+          <Card className="text-center">Virtual Liquidity</Card>
+        </div>
+      )}
     </Card>
   )
 }

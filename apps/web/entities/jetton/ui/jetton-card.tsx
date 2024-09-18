@@ -21,13 +21,10 @@ export const JettonCard: FC<JettonCardProps> = ({
 
   return (
     <Card className="relative overflow-hidden max-w-[345px]">
-      <Image
-        src={image || 'https://cdn.sunpump.meme/public/logo/GOKU_TEW71u_O1eiYMiRWcrt.jpeg'}
-        alt="Jetton Logo"
-        width={345}
-        height={242}
-        className="w-full"
-      />
+      {image && <Image src={image} alt="Jetton Logo" width={345} height={328} className="rounded-lg w-full" />}
+      {!image && (
+        <div className="w-full h-[280px] bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 rounded-lg"></div>
+      )}
       <CardContent className="p-6 space-y-2">
         <div className="flex justify-between items-center gap-2 relative">
           <MinterAddress address={minter} className="z-50" />
@@ -51,7 +48,7 @@ export const JettonCard: FC<JettonCardProps> = ({
           </Badge>
         </div>
       )}
-      <Link className="absolute inset-0 w-full" href={`/jetton/${address}`} />
+      <Link className="absolute inset-0 w-full p-0 m-o" href={`/jetton/${address}`} />
     </Card>
   )
 }

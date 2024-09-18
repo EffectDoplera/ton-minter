@@ -1,6 +1,7 @@
 'use client'
 
-import { JettonImage, JettonInfo } from '@/entities/jetton'
+import { JettonImage } from '@/entities/jetton/ui/jetton-image'
+import { JettonInfo } from '@/entities/jetton/ui/jetton-info'
 import { useTonConnectModal, useTonWallet } from '@/features/connect-wallet'
 import { Button } from '@/shared/ui/button'
 import { Card, CardContent, CardHeader } from '@/shared/ui/card'

@@ -30,7 +30,14 @@ export const LoadMore: FC<LoadMoreProps> = ({ children, action, initialOffset = 
     <>
       {children}
       {data && data.pages.map(([items]) => items.map((item) => item))}
-      <Button ref={ref} onClick={() => fetchNextPage()} variant="outline" size="lg" className="col-span-full">
+      <Button
+        ref={ref}
+        onClick={() => fetchNextPage()}
+        variant="outline"
+        size="lg"
+        className="col-span-full"
+        disabled={isLoading || !data?.pages[data.pages.length - 1]?.[1]}
+      >
         {isLoading ? 'Loading...' : 'Load More'}
       </Button>
     </>

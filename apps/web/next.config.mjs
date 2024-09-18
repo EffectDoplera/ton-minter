@@ -2,7 +2,6 @@
 const nextConfig = {
   experimental: {
     instrumentationHook: true,
-    ppr: 'incremental',
   },
   images: {
     dangerouslyAllowSVG: true,

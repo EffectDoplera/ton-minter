@@ -20,7 +20,7 @@ export const JettonCard: FC<JettonCardProps> = ({
   const socialLinks = getSocialLinks(meta)
 
   return (
-    <Card className="relative overflow-hidden">
+    <Card className="relative overflow-hidden max-w-[345px]">
       <Image
         src={image || 'https://cdn.sunpump.meme/public/logo/GOKU_TEW71u_O1eiYMiRWcrt.jpeg'}
         alt="Jetton Logo"

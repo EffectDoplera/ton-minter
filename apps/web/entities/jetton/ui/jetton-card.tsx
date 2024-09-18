@@ -1,4 +1,4 @@
-import { toShortAddress } from '@/entities/address'
+import { MinterAddress } from '@/entities/minter'
 import { Badge } from '@/shared/ui/badge'
 import { Card, CardContent, CardDescription, CardFooter, CardTitle } from '@/shared/ui/card'
 import Image from 'next/image'
@@ -30,9 +30,7 @@ export const JettonCard: FC<JettonCardProps> = ({
       />
       <CardContent className="p-6 space-y-2">
         <div className="flex justify-between items-center gap-2 relative">
-          <div className="text-sm text-muted-foreground absolute left-0 z-50">
-            Created by: <Link href="#">{toShortAddress(minter)}</Link>
-          </div>
+          <MinterAddress address={minter} className="z-50" />
           <div className="flex gap-1 text-sm text-muted-foreground absolute right-0 z-50">
             <JettonSocialLinks links={socialLinks} />
           </div>

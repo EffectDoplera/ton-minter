@@ -1,7 +1,6 @@
-import { toShortAddress } from '@/entities/address'
+import { MinterAddress } from '@/entities/minter'
 import { Card, CardContent, CardDescription, CardTitle } from '@/shared/ui/card'
 import Image from 'next/image'
-import Link from 'next/link'
 import { getSocialLinks } from '../lib'
 import { JettonWithMeta } from '../model'
 import { JettonSocialLinks } from './jetton-social-links'
@@ -29,10 +28,7 @@ export const JettonPreview: React.FC<JettonPreviewProps> = ({
             <div className="flex flex-col gap-2 justify-between">
               <p>{name}</p>
               <CardTitle>($ {symbol})</CardTitle>
-              <div className="text-sm text-muted-foreground">
-                Created by: <Link href="#">{toShortAddress(minter)}</Link>
-              </div>
-
+              <MinterAddress address={minter} />
               <CardDescription className="line-clamp-3">{description}</CardDescription>
             </div>
           </div>

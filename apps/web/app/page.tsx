@@ -25,7 +25,7 @@ export default async function Home() {
         TONPUMP
       </h1>
       {ENABLE_SEARCH && <SearchBar />}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-self-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 place-items-center">
         <LoadMore action={loadMoreJettons} initialOffset={5}>
           {initialJettons.map((jetton) => (
             <JettonCard key={jetton.id} jetton={jetton} />

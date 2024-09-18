@@ -28,7 +28,7 @@ export const JettonCard: FC<JettonCardProps> = ({
       <CardContent className="p-6 space-y-2">
         <div className="flex justify-between items-center gap-2 relative">
           <MinterAddress address={minter} className="z-50" />
-          <div className="flex gap-1 text-sm text-muted-foreground absolute right-0 z-50">
+          <div className="flex gap-1 text-sm text-muted-foreground z-50">
             <JettonSocialLinks links={socialLinks} />
           </div>
         </div>

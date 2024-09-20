@@ -23,7 +23,13 @@ export const JettonCard: FC<JettonCardProps> = ({
     <Card className="relative overflow-hidden">
       {image && <Image src={image} alt="Jetton Logo" width={345} height={330} className="rounded-lg" />}
       {!image && (
-        <div className="w-[345px] h-[330px] bg-[url('/coin-logo.svg')] bg-center bg-contain bg-no-repeat rounded-lg"></div>
+        <Image
+          src={'/coin-logo.svg'}
+          alt="Jetton Placeholder"
+          width={345}
+          height={330}
+          className="rounded-lg bg-gradient-to-r from-slate-400 via-slate-200 to-slate-400"
+        ></Image>
       )}
       <CardContent className="p-6 space-y-2">
         <div className="flex justify-between items-center gap-2 relative">

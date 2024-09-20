@@ -1,6 +1,7 @@
 import { getJettons, JettonCard } from '@/entities/jetton'
 import { LoadMore } from '@/features/load-more'
 import { SearchBar } from '@/features/search-for-jetton'
+import { TonflareCard } from '@/widgets/tonflare-card'
 
 const PAGE_SIZE = 5
 const OFFSET = 0
@@ -21,9 +22,19 @@ export default async function Home() {
 
   return (
     <>
-      <h1 className="text-5xl font-bold text-center bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 text-transparent bg-clip-text">
-        TONPUMP
-      </h1>
+      <div className="grid md:grid-cols-4 gap-2">
+        <div className="col-start-1 col-end-3 grid place-content-center">
+          <h1 className="text-5xl font-bold text-center bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 text-transparent bg-clip-text">
+            TONPUMP
+          </h1>
+          <p className="text-3xl font-bold text-center">
+            The First Meme Fair Launch Platform on TON. PUMP TO THE SPACE
+          </p>
+        </div>
+        <div className="col-span-2 grid place-content-center md:content-center md:justify-end">
+          <TonflareCard />
+        </div>
+      </div>
       {ENABLE_SEARCH && <SearchBar />}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 place-items-center">
         <LoadMore action={loadMoreJettons} initialOffset={5}>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useTonConnectModal, useTonWallet } from '@/features/connect-wallet'
+import { useTonConnectModal, useTonConnectUI, useTonWallet } from '@/features/connect-wallet'
 import { Button } from '@/shared/ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/shared/ui/sheet'
 import { MenuIcon } from 'lucide-react'
@@ -13,10 +13,15 @@ export const MobileNav = () => {
   const path = usePathname()
   const wallet = useTonWallet()
   const { open } = useTonConnectModal()
+  const [tonConnectUI] = useTonConnectUI()
 
   useEffect(() => {
     setOpenSheet(false)
   }, [path])
+
+  const disconnect = async () => {
+    await tonConnectUI.disconnect()
+  }
 
   return (
     <Sheet open={openSheet} onOpenChange={setOpenSheet}>
@@ -46,6 +51,11 @@ export const MobileNav = () => {
         {!wallet && (
           <Button type="button" onClick={open}>
             Connect wallet
+          </Button>
+        )}
+        {wallet && (
+          <Button type="button" onClick={disconnect}>
+            Disconnect
           </Button>
         )}
       </SheetContent>

@@ -10,7 +10,7 @@ interface JettonImageProps {
 export const JettonImage: React.FC<JettonImageProps> = ({ src, editable = false }) => {
   return (
     <Avatar className="inline-flex w-25 h-25 group">
-      <AvatarImage className="w-25 h-25" src={src} alt="Jetton Logo" width={100} height={100} />
+      <AvatarImage className="w-25 h-25 aspect-square" src={src} alt="Jetton Logo" width={100} height={100} />
       <AvatarFallback>
         <Image src="/coin-logo.svg" alt="Jetton Logo placeholder" width={100} height={100} priority />
       </AvatarFallback>

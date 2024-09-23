@@ -17,6 +17,7 @@ import {
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { useMintJetton } from './use-mint-jetton'
@@ -60,16 +61,18 @@ export const MintJettonForm = () => {
   const wallet = useTonWallet()
   const { open } = useTonConnectModal()
   const minter = useMintJetton()
+  const navigation = useRouter()
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     await minter.mutateAsync(data)
+    navigation.push('/')
   }
   return (
-    <Card className="flex flex-col items-center max-w-96">
+    <Card className="flex flex-col items-center w-full max-w-screen-md mx-auto">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="w-full" onSubmit={form.handleSubmit(onSubmit)}>
           <CardHeader>
-            <div className="flex gap-4">
+            <div className="gap-4 sm:flex sm:flex-row">
               <Dialog>
                 <DialogTrigger asChild>
                   <Button variant="ghost" size="icon" className="w-25 h-25 p-1 rounded-full">
@@ -89,9 +92,7 @@ export const MintJettonForm = () => {
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
-                        <FormDescription>
-                          URL of 256x256 pixel PNG image of token logo with transparent background.
-                        </FormDescription>
+                        <FormDescription>URL of 256x256 pixel PNG/JPEG/WEBP/GIF image of token logo.</FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}

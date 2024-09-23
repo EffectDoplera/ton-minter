@@ -36,7 +36,7 @@ export default async function Home() {
         </div>
       </div>
       {ENABLE_SEARCH && <SearchBar />}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 place-items-center">
+      <div className="grid grid-cols-[repeat(auto-fill,345px)] gap-4 place-content-center">
         <LoadMore action={loadMoreJettons} initialOffset={5}>
           {initialJettons.map((jetton) => (
             <JettonCard key={jetton.id} jetton={jetton} />

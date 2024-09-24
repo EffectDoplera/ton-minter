@@ -35,3 +35,7 @@ export const jettonsMetaRelations = relations(jettonsMeta, ({ one }) => ({
 export type Jetton = typeof jettons.$inferSelect
 export type JettonMeta = typeof jettonsMeta.$inferSelect
 export type JettonWithMeta = Jetton & { meta: JettonMeta | null }
+
+export type NewJetton = typeof jettons.$inferInsert
+export type NewJettonMeta = typeof jettonsMeta.$inferInsert
+export type NewJettonWithMeta = NewJetton & { meta: Partial<NewJettonMeta> }

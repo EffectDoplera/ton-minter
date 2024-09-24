@@ -17,32 +17,14 @@ import {
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { CreateJettonFormSchema } from './schema'
 import { useMintJetton } from './use-mint-jetton'
 
-const FormSchema = z.object({
-  name: z.string().min(2, {
-    message: 'Jetton Name must be at least 2 characters.',
-  }),
-  symbol: z.string().min(2, {
-    message: 'Jetton Symbol must be at least 2 characters.',
-  }),
-  decimals: z.string().min(0).max(9),
-  amount: z.string(),
-  description: z.string(),
-  image: z.string(),
-  meta: z.object({
-    website: z.string(),
-    twitter: z.string(),
-    telegram: z.string(),
-  }),
-})
-
 export const MintJettonForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof CreateJettonFormSchema>>({
+    resolver: zodResolver(CreateJettonFormSchema),
     defaultValues: {
       name: '',
       symbol: '',
@@ -61,11 +43,9 @@ export const MintJettonForm = () => {
   const wallet = useTonWallet()
   const { open } = useTonConnectModal()
   const minter = useMintJetton()
-  const navigation = useRouter()
 
-  async function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof CreateJettonFormSchema>) {
     await minter.mutateAsync(data)
-    navigation.push('/')
   }
   return (
     <Card className="flex flex-col items-center w-full max-w-screen-md mx-auto">

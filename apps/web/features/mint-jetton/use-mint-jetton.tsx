@@ -1,11 +1,13 @@
 'use client'
 
+import { createJettonAction } from '@/app/(jetton)/actions'
 import { useTonClient, useTonSender, useTonWallet } from '@/features/connect-wallet'
 import { toast } from '@/shared/ui/use-toast'
 import { JettonMasterImpl as JettonMaster } from '@repo/contract/Jetton/tact_JettonMasterImpl'
 import { buildJettonContent, JettonContent } from '@repo/contract/utils'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Address, beginCell, toNano, TonClient4 } from '@ton/ton'
+import { startTransition } from 'react'
 
 type JettonMeta = {
   amount: string
@@ -109,20 +111,16 @@ export const useMintJetton = () => {
           },
         )
 
-        await fetch('/api/jettons', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
+        startTransition(() => {
+          createJettonAction({
             address: jettonMasterContract.address.toString(),
             name: jettonData.name,
             symbol: jettonData.symbol,
             description: jettonData.description,
-            image: jettonData.image,
+            image: jettonData.image ?? '',
             minter: sender.address?.toString() ?? '',
             meta,
-          }),
+          })
         })
 
         toast({

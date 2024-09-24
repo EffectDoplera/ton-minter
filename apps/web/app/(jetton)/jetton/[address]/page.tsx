@@ -1,5 +1,5 @@
-import { JettonPreview } from '@/entities/jetton'
-import { db } from '@/shared/database'
+import { getJettonById } from '@/entities/jetton/api'
+import { JettonPreview } from '@/entities/jetton/ui/jetton-preview'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,21 +9,14 @@ import {
   BreadcrumbSeparator,
 } from '@/shared/ui/breadcrumb'
 import { ComingSoon, ComingSoonContent } from '@/shared/ui/coming-soon'
-import { notFound } from 'next/navigation'
-import { cache } from 'react'
 
-const getJettonById = cache(async (id: string) => {
-  const query = await db.query.jettons.findFirst({
-    where: ({ address }, { eq }) => eq(address, id),
-    with: {
-      meta: true,
-    },
-  })
-  if (!query) notFound()
-  return query
-})
+interface JettonPageProps {
+  params: {
+    address: string
+  }
+}
 
-const JettonPage = async ({ params }: { params: { address: string } }) => {
+const JettonPage = async ({ params }: JettonPageProps) => {
   const data = await getJettonById(params.address)
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-4 justify-center">

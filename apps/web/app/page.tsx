@@ -6,19 +6,22 @@ import { TonflareCard } from '@/widgets/tonflare-card'
 const PAGE_SIZE = 5
 const OFFSET = 0
 
-async function loadMoreJettons(offset: number = OFFSET, limit: number = PAGE_SIZE) {
+async function loadMoreJettons({ offset = OFFSET, limit = PAGE_SIZE, params = '' }: Parameters<typeof getJettons>[0]) {
   'use server'
-  const jettons = await getJettons(offset, limit)
+  const jettons = await getJettons({ offset, limit, params })
 
   const nextOffset = jettons.length >= PAGE_SIZE ? PAGE_SIZE + OFFSET : null
 
   return [jettons.map((jetton) => <JettonCard key={jetton.id} jetton={jetton} />), nextOffset] as const
 }
 
-const ENABLE_SEARCH = false
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | undefined }
+}
 
-export default async function Home() {
-  const initialJettons = await getJettons(0, 5)
+export default async function Home(props: Props) {
+  const initialJettons = await getJettons({ offset: OFFSET, limit: PAGE_SIZE, params: props.searchParams.query })
 
   return (
     <>
@@ -35,7 +38,7 @@ export default async function Home() {
           <TonflareCard />
         </div>
       </div>
-      {ENABLE_SEARCH && <SearchBar />}
+      <SearchBar />
       <div className="grid grid-cols-[repeat(auto-fill,345px)] gap-4 place-content-center">
         <LoadMore action={loadMoreJettons} initialOffset={5}>
           {initialJettons.map((jetton) => (

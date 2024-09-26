@@ -1,18 +1,5 @@
+import { getLastMintedJetton } from '@/entities/jetton/api'
 import { JettonCard } from '@/entities/jetton/ui/jetton-card'
-import { db } from '@/shared/database'
-import { notFound } from 'next/navigation'
-import { cache } from 'react'
-
-const getLastMintedJetton = cache(async () => {
-  const query = await db.query.jettons.findFirst({
-    orderBy: (jettons, { desc }) => desc(jettons.id),
-    with: {
-      meta: true,
-    },
-  })
-  if (!query) notFound()
-  return query
-})
 
 export const TonflareCard = async () => {
   const query = await getLastMintedJetton()

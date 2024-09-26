@@ -3,30 +3,31 @@
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-
-const FormSchema = z.object({
-  address: z.string().min(2),
-})
-
-type FormData = z.infer<typeof FormSchema>
+import { useDebouncedCallback } from 'use-debounce'
+import { SearchForJettonFormValues } from './schema'
 
 export const SearchBar = () => {
-  const form = useForm<FormData>({
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  const form = useForm<SearchForJettonFormValues>({
     defaultValues: {
-      address: '',
+      query: searchParams.get('query') || '',
     },
   })
 
-  // const { mutate, error } = useServerActionMutation(searchBy, {
-  //   mutationKey: ['searchBy'],
-  // })
+  const debounced = useDebouncedCallback(() => {
+    if (form.getValues('query')) {
+      router.replace(`/?query=${form.getValues('query')}`)
+    } else {
+      router.replace('/')
+    }
+  }, 300)
 
-  const onSubmit = (input: FormData) => {
-    console.log(input)
-
-    // if (!error) form.reset()
+  const onSubmit = (input: SearchForJettonFormValues, event?: React.BaseSyntheticEvent) => {
+    event?.preventDefault()
   }
 
   return (
@@ -35,12 +36,20 @@ export const SearchBar = () => {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
-            name="address"
+            name="query"
             render={({ field }) => (
               <FormItem className="space-y-0 relative">
                 <MagnifyingGlassIcon className="h-4 w-4 absolute top-3 left-3 text-muted-foreground" />
                 <FormControl>
-                  <Input placeholder="Search for jettons" className="placeholder-shown:truncate pl-9" {...field} />
+                  <Input
+                    placeholder="Search for jettons"
+                    className="placeholder-shown:truncate pl-9"
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e.target.value)
+                      debounced()
+                    }}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

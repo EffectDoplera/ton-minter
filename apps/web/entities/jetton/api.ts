@@ -2,11 +2,26 @@ import { db, jettons, jettonsMeta, NewJettonWithMeta } from '@/shared/database'
 import { notFound } from 'next/navigation'
 import { cache } from 'react'
 
-export const getJettons = cache(async (offset = 0, limit = 20) => {
-  const query = await db.query.jettons.findMany({
-    limit,
-    offset,
-    orderBy: (jettons, { desc }) => desc(jettons.id),
+export const getJettons = cache(
+  async ({ offset = 0, limit = 20, params = '' }: { offset?: number; limit?: number; params?: string }) => {
+    const query = await db.query.jettons.findMany({
+      limit,
+      offset,
+      orderBy: (jettons, { desc }) => desc(jettons.id),
+      where: (jettons, { like, or }) =>
+        or(like(jettons.address, `${params}%`), like(jettons.name, `${params}%`), like(jettons.symbol, `${params}%`)),
+      with: {
+        meta: true,
+      },
+    })
+    if (!query) notFound()
+    return query
+  },
+)
+
+export const getJettonById = cache(async (id: string) => {
+  const query = await db.query.jettons.findFirst({
+    where: ({ address }, { eq }) => eq(address, id),
     with: {
       meta: true,
     },
@@ -15,9 +30,9 @@ export const getJettons = cache(async (offset = 0, limit = 20) => {
   return query
 })
 
-export const getJettonById = cache(async (id: string) => {
+export const getLastMintedJetton = cache(async () => {
   const query = await db.query.jettons.findFirst({
-    where: ({ address }, { eq }) => eq(address, id),
+    orderBy: (jettons, { desc }) => desc(jettons.id),
     with: {
       meta: true,
     },

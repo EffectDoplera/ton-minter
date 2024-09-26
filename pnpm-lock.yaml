@@ -187,6 +187,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.7(ts-node@10.9.2(@types/node@20.11.24)(typescript@5.5.4)))
+      use-debounce:
+        specifier: ^10.0.3
+        version: 10.0.3(react@19.0.0-rc-7771d3a7-20240827)
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -5693,6 +5696,12 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  use-debounce@10.0.3:
+    resolution: {integrity: sha512-DxQSI9ZKso689WM1mjgGU3ozcxU1TJElBJ3X6S4SMzMNcm2lVH0AHmyXB+K7ewjz2BSUKJTDqTcwtSMRfB89dg==}
+    engines: {node: '>= 16.0.0'}
+    peerDependencies:
+      react: '*'
 
   use-sidecar@1.1.2:
     resolution: {integrity: sha512-epTbsLuzZ7lPClpz2TyryBfztm7m+28DlEv2ZCQ3MDr5ssiwyOwGH/e5F9CkfWjJ1t4clvI58yF822/GUkjjhw==}
@@ -11848,6 +11857,10 @@ snapshots:
       tslib: 2.6.2
     optionalDependencies:
       '@types/react': 18.2.61
+
+  use-debounce@10.0.3(react@19.0.0-rc-7771d3a7-20240827):
+    dependencies:
+      react: 19.0.0-rc-7771d3a7-20240827
 
   use-sidecar@1.1.2(@types/react@18.2.61)(react@19.0.0-rc-7771d3a7-20240827):
     dependencies:

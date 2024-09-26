@@ -20,13 +20,7 @@ export const JettonPreview: React.FC<JettonPreviewProps> = ({
       <CardContent className="p-0">
         <div className="flex justify-between gap-2">
           <div className="flex justify-between gap-2">
-            <Image
-              src={image || 'https://cdn.sunpump.meme/public/logo/GOKU_TEW71u_O1eiYMiRWcrt.jpeg'}
-              alt="Jetton Logo"
-              width={60}
-              height={80}
-              className="w-full h-full"
-            />
+            <Image src={image || '/coin-logo.svg'} alt="Jetton Logo" width={60} height={80} className="w-full h-full" />
             <div className="flex flex-col gap-2 justify-between">
               <p>{name}</p>
               <CardTitle>($ {symbol})</CardTitle>

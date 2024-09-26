@@ -33,10 +33,10 @@ const JettonPage = async ({ params }: JettonPageProps) => {
       </Breadcrumb>
 
       <JettonPreview jetton={data} />
-      <ComingSoon className="h-96 grid place-content-center md:col-span-4">
+      <ComingSoon className="h-96 grid place-content-center md:col-span-6">
         <ComingSoonContent>CHART</ComingSoonContent>
       </ComingSoon>
-      <ComingSoon className="h-96 grid place-content-center md:col-span-4">
+      <ComingSoon className="h-96 grid place-content-center md:col-span-6">
         <ComingSoonContent>Trade</ComingSoonContent>
       </ComingSoon>
     </div>

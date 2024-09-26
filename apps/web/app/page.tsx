@@ -34,7 +34,7 @@ export default async function Home(props: Props) {
             The First Meme Fair Launch Platform on TON. PUMP TO THE SPACE
           </p>
         </div>
-        <div className="col-span-2 grid place-content-center md:content-center md:justify-end">
+        <div className="col-span-2 grid place-content-center gap-4 md:content-center md:justify-end @container">
           <TonflareCard />
         </div>
       </div>

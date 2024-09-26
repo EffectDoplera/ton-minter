@@ -20,18 +20,20 @@ export const JettonCard: FC<JettonCardProps> = ({
   const socialLinks = getSocialLinks(meta)
 
   return (
-    <Card className="relative overflow-hidden">
-      {image && <Image src={image} alt="Jetton Logo" width={345} height={330} className="rounded-lg aspect-square" />}
+    <Card className="relative overflow-hidden flex flex-col @xl:flex-row">
+      {image && (
+        <Image src={image} alt="Jetton Logo" width={345} height={330} className="rounded-lg aspect-square @xl:w-52" />
+      )}
       {!image && (
         <Image
           src={'/coin-logo.svg'}
           alt="Jetton Placeholder"
           width={345}
           height={330}
-          className="rounded-lg bg-gradient-to-r from-slate-400 via-slate-200 to-slate-400"
+          className="rounded-lg bg-gradient-to-r from-slate-400 via-slate-200 to-slate-400 aspect-square @xl:w-52"
         />
       )}
-      <CardContent className="p-6 space-y-2">
+      <CardContent className="p-6 space-y-2 @xl:flex @xl:flex-col">
         <div className="flex justify-between items-center gap-2 relative">
           <MinterAddress address={minter} className="z-50" />
           <div className="flex gap-1 text-sm text-muted-foreground z-50">
@@ -41,9 +43,10 @@ export const JettonCard: FC<JettonCardProps> = ({
         <CardTitle className="pt-2">
           {name} ($ {symbol})
         </CardTitle>
-        <CardDescription className="line-clamp-3 min-h-4">{description}</CardDescription>
+        <CardDescription className="line-clamp-3 min-h-4 @xl:flex-1">{description}</CardDescription>
+        <CardDescription className="hidden @xl:block">Market Cap: $0.00</CardDescription>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="@xl:hidden">
         <CardDescription>Market Cap: $0.00</CardDescription>
       </CardFooter>
 

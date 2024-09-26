@@ -20,9 +20,9 @@ export const SearchBar = () => {
 
   const debounced = useDebouncedCallback(() => {
     if (form.getValues('query')) {
-      router.replace(`/?query=${form.getValues('query')}`)
+      router.replace(`/?query=${form.getValues('query')}`, { scroll: false })
     } else {
-      router.replace('/')
+      router.replace('/', { scroll: false })
     }
   }, 300)
 
